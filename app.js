@@ -10,6 +10,9 @@ app.set('view engine', 'hbs');
 
 io.on('connection', (socket) => {
     console.log(`User connected with id ${socket.id}`)
+    socket.on( 'sendMessage', conteudo => {
+        socket.broadcast.emit('messageReceive', conteudo)
+    })
 })
 
 app.get('/', (req, res) => {
